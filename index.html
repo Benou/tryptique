@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Tryptique</title>
+    <script type="text/javascript" src="js/lib/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="js/lib/underscore-1.8.2.min.js"></script>
+    <script type="text/javascript" src="js/lib/backbone-1.1.2.min.js"></script>
+    <script type="text/javascript" src="js/lib/modestmaps.min.js"></script>
+    <script type="text/javascript" src="js/lib/modestmaps.markers.js"></script>
+    <style>
+        /* reset */
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            background-color: cadetblue;
+            width: 300px;
+            height: 600px;
+        }
+
+        .marker {
+            background-color: tomato;
+            width: 16px;
+            height: 16px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- DOM -->
+    <div id="map"></div>
+
+    <!-- Main -->
+    <script type="text/javascript" src="js/src/Tryptique.js"></script>
+    <script type="text/javascript" src="js/src/Utils.js"></script>
+
+    <!-- Models -->
+    <script type="text/javascript" src="js/src/model/ConfigModel.js"></script>
+    <script type="text/javascript" src="js/src/model/EntityModel.js"></script>
+    <script type="text/javascript" src="js/src/model/EntityCollection.js"></script>
+    <script type="text/javascript" src="js/src/model/LocalizationModel.js"></script>
+
+    <!-- Views -->
+    <script type="text/javascript" src="js/src/view/VideoView.js"></script>
+    <script type="text/javascript" src="js/src/view/LocalizationView.js"></script>
+    <script type="text/javascript" src="js/src/view/MapView.js"></script>
+    <script type="text/javascript" src="js/src/view/EntityView.js"></script>
+
+    <!-- Startup -->
+    <script type="text/javascript">
+        var tryptique_params = {
+            id: "2602635",
+            name: "kiastorelocator"
+        }
+    </script>
+</body>
+</html>
