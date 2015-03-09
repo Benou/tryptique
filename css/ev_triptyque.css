@@ -75,7 +75,16 @@ div.visuel_map{
     position: absolute;
     bottom: 1%;
     right: 2%;
+    z-index: 1;
 }
 
 
 /* source flex : http://the-echoplex.net/flexyboxes/ */
+
+/*CSS pour les markers de la map*/
+.marker {
+    background-color: tomato;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+}

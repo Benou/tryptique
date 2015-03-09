@@ -11,34 +11,14 @@
     <script src="js/lib/modestmaps.markers.js"></script>
     <script src="js/lib/prefixfree.min.js"></script>
     <link rel="stylesheet" href="css/ev_triptyque.css"/>
-    <style>
-
-        .marker {
-            background-color: tomato;
-            width: 16px;
-            height: 16px;
-            border-radius: 8px;
-        }
-    </style>
 </head>
 <body>
     <!-- DOM -->
     <div class="ev_container">
-        <div class="visuel_client">
-            <img src="img/visuel_client.jpg" alt=""/>
-        </div>
-        <div class="visuel_video">
-            <img src="img/visuel_video.jpg" alt=""/>
-        </div>
-        <div class="visuel_form">
-            <img src="img/visuel_form.jpg" alt=""/>
-        </div>
-        <div class="visuel_map">
-            <div id="map">
-
-            </div>
-            <div class="icon_fullpage"></div>
-        </div>
+        <div id="cta" class="visuel_client"></div>
+        <div id="video_container" class="visuel_video"></div>
+        <div id="localization_form" class="visuel_form"></div>
+        <div id="map_container" class="visuel_map"></div>
     </div>
 
     <!-- Main -->
@@ -52,10 +32,11 @@
     <script type="text/javascript" src="js/src/model/LocalizationModel.js"></script>
 
     <!-- Views -->
-    <script type="text/javascript" src="js/src/view/VideoView.js"></script>
-    <script type="text/javascript" src="js/src/view/LocalizationView.js"></script>
-    <script type="text/javascript" src="js/src/view/MapView.js"></script>
-    <script type="text/javascript" src="js/src/view/EntityView.js"></script>
+    <script type="text/javascript" src="js/src/view/CallToActionView.js"></script>
+    <script type="text/javascript" src="js/src/view/VideoContainerView.js"></script>
+    <script type="text/javascript" src="js/src/view/LocalizationFormView.js"></script>
+    <script type="text/javascript" src="js/src/view/MapContainerView.js"></script>
+    <script type="text/javascript" src="js/src/view/MarkerView.js"></script>
 
     <!-- Startup -->
     <script type="text/javascript">
@@ -63,39 +44,6 @@
             id: "2733640",
             name: "vincentperlot"
         }
-    </script>
-
-    <!-- Full Page Button -->
-    <script>
-        $( document ).ready(function() {
-
-            $('.icon_fullpage').on('click',function(){
-
-                if ($("div.visuel_map").hasClass('visu1')){
-                    // alert( "affiche mini");
-                    layoutminiMap()
-                }
-                else{
-                    // alert( "affiche full");
-                    layoutFullMap();
-                }
-
-            });
-
-            function layoutFullMap() {
-                $("div.visuel_client").css('display', 'none');
-                $("div.visuel_video").css('display', 'none');
-                $("div.visuel_form").addClass('visu2');
-                $("div.visuel_map").addClass('visu1');
-            }
-            function layoutminiMap() {
-                $("div.visuel_client").css('display', 'block');
-                $("div.visuel_video").css('display', 'block');
-                $("div.visuel_form").removeClass('visu2');
-                $("div.visuel_map").removeClass('visu1');
-            }
-
-        });
     </script>
 </body>
 </html>
