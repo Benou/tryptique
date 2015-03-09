@@ -8,7 +8,9 @@
             n: "name",
             a: "address",
             c: "country",
-            z: "zipCode"
+            z: "zipCode",
+            lat: "latitude",
+            long: "longitude"
         },
 
         defaults: function() {
@@ -17,6 +19,8 @@
                 adress: "",
                 country: "",
                 zipCode: "",
+                latitude: 0,
+                longitude: 0,
                 geometry: null
             };
         },

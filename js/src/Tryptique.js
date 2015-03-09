@@ -46,7 +46,7 @@
         },
 
         onLocalizationChange: function() {
-            console.log( "  -> onLocalizationChange()" );
+            this._entityList.calculateDelta( this._localizationModel.toJSON() );
         }
     } );
 

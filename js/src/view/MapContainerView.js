@@ -11,6 +11,10 @@
 
         _map: null,
 
+        initialize: function() {
+            this.collection.on( "sort", _.bind( this.onCollectionSorted, this ) );
+        },
+
         render: function() {
             this.$el.html( this.template() );
 
@@ -23,20 +27,11 @@
             this._map = new MM.Map( this.el.id, provider );
             this._map.addLayer( markers );
 
-            var locationList = [ ];
-            var markerView = null;
-
             _.each( this.collection.models, function( entityModel ) {
-                markerView = new kps.MarkerView( {
+                markers.addMarker( new kps.MarkerView( {
                     model: entityModel
-                } ).render();
-
-                markers.addMarker( markerView.el, entityModel.toJSON() );
-
-                locationList.push( markerView.el.location );
+                } ).render().el, entityModel.toJSON() );
             }, this );
-
-            this._map.setExtent( locationList );
 
             return this;
         },
@@ -50,6 +45,24 @@
                 // alert( "affiche full");
                 layoutFullMap();
             }
+
+            this._map._windowResize();
+        },
+
+        onCollectionSorted: function() {
+            var locationList = [ ];
+            var entityModel = null;
+
+            _.times( this.collection._mapDefaults.maxaffcity, function( i ) {
+                entityModel = this.collection.at( i );
+                locationList.push( new MM.Location(
+                    entityModel.get( "latitude" ),
+                    entityModel.get( "longitude")
+                ) );
+            }, this );
+
+            this._map.setExtent( locationList );
+            this._map.setZoom( this.collection._mapDefaults.zoom );
         }
     } );
 
