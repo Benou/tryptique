@@ -20,12 +20,11 @@
 
         onConfigChange: function() {
             this._entityList = new kps.EntityCollection();
-            this._entityList.fetch( this._configModel.get( "entitiesURL" ), {
-                success: _.bind( this.onEntitiesFetched, this )
-            } );
+            this._entityList.on( "reset", _.bind( this.onEntitiesChange, this ) );
+            this._entityList.fetch( this._configModel.get( "entitiesURL" ) );
         },
 
-        onEntitiesFetched: function() {
+        onEntitiesChange: function() {
             this._mapView = new kps.MapView( {
                 collection: this._entityList
             } ).render();

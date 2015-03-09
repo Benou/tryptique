@@ -36,9 +36,9 @@
         fetchByZipCode: function( zipCode, options ) {
             ( options ) || ( options = { } );
             _.extend( options, {
-                url: this.url + "/" + zipCode,
                 parse: true,
-                dataType: "text"
+                dataType: "text",
+                url: this.url + "/" + zipCode
             } );
             kps.LocalizationModel.__super__.fetch.call( this, options );
         },

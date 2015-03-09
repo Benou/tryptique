@@ -4,22 +4,24 @@
     \Slim\Slim::registerAutoloader();
 
     $app = new \Slim\Slim();
-    $app->get( "/config", "getConfig" );
+    $app->get( "/config/:name/:id", "getConfig" );
     $app->get( "/entities", "getEntities" );
     $app->get( "/localization", "getLocalization" );
     $app->get( "/localization/:zipCode", "getLocalizationByZipCode" );
     $app->run();
 
-    function getConfig() {
-        $url = "http://ads.kpsule.me/kiastorelocator/kiastorelocator_2602635.xml";
+    function getConfig( $name, $id ) {
+        $url = "http://ads.kpsule.me/".$name."/".$name."_".$id.".xml";
         $response = \Httpful\Request::get( $url )->send();
         echo $response;
     }
 
     function getEntities() {
-        $url = "https://espacelicencie.ffgolf.org/loisir/common/files/get_go_for_golf_capsule.php?k=244d043cc0dae4794a0a4fb6e2e933e4";
-        $response = \Httpful\Request::get( $url )->send();
-        echo $response;
+        if ( isset( $_GET[ "source" ] ) ) {
+            $url = urldecode( $_GET[ "source" ] );
+            $response = \Httpful\Request::get( $url )->send();
+            echo $response;
+        }
     }
 
     function getLocalization() {

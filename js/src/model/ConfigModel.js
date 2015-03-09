@@ -12,11 +12,12 @@
             };
         },
 
-        fetch: function( params, options ) {
+        fetch: function( tryptique_params, options ) {
             ( options ) || ( options = { } );
             _.extend( options, {
                 parse: true,
-                dataType: "text"
+                dataType: "text",
+                url: this.url + "/" + tryptique_params.name + "/" + tryptique_params.id
             } );
             kps.ConfigModel.__super__.fetch.call( this, options );
         },

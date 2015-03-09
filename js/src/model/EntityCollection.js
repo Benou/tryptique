@@ -10,11 +10,13 @@
         _localizationDefaults: { },
         _mapDefaults: { },
 
-        fetch: function( url, options ) {
+        fetch: function( source, options ) {
             ( options ) || ( options = { } );
             _.extend( options, {
                 parse: true,
-                dataType: "json"
+                reset: true,
+                dataType: "json",
+                url: this.url + "?source=" + encodeURIComponent( source )
             } );
             kps.EntityCollection.__super__.fetch.call( this, options );
         },
