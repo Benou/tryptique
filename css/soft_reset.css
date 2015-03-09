@@ -1,0 +1,210 @@
+/* soft reset (extraits de knacss) */
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+ol {
+    padding-left: 0;
+}
+
+ul.unstyled {
+    list-style: none;
+}
+
+img {
+    height: auto;
+    vertical-align: middle;
+    border: 0;
+}
+
+audio,
+canvas,
+video {
+    display: inline-block;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+/* typography */
+/* base font-size corresponds to 10px and is adapted to rem unit */
+html {
+    font-size: 62.5%;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+/* font-sizing for content */
+
+
+
+h1,
+.h1-like {
+    font-size: 3.2rem;
+}
+
+h2,
+.h2-like {
+    font-size: 2.8rem;
+}
+
+h3,
+.h3-like {
+    font-size: 2.4rem;
+}
+
+h4,
+.h4-like {
+    font-size: 2rem;
+}
+
+h5,
+.h5-like {
+    font-size: 1.8rem;
+}
+
+h6,
+.h6-like {
+    font-size: 1.6rem;
+}
+
+/* avoid top margins on first content element */
+
+
+/* avoid margins on nested elements */
+
+li p,
+li .p-like,
+li ul,
+li ol {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* max values */
+
+img {
+    max-width: 100%;
+}
+
+
+
+/* module, gains superpower "BFC" Block Formating Context */
+
+.mod {
+    overflow: hidden;
+}
+
+/* floats */
+
+.flt_left {
+    float: left;
+}
+
+.flt_right{
+    float: right;
+}
+
+/* blocks that needs to be placed under floats */
+
+.clear {
+    clear: both;
+}
+
+/* blocks that must contain floats */
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+
+/* table layout */
+
+.row {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.row > *,
+.col {
+    display: table-cell;
+    vertical-align: top;
+}
+
+/* inline-block */
+
+.inbl {
+    display: inline-block;
+    vertical-align: top;
+}
+
+/* spacing helpers
+p,m = padding,margin
+a,t,r,b,l = all,top,right,bottom,left
+s,m,l,n,0 = small(10px),medium(20px),large(30px), zero or none(0)
+source https://github.com/stubbornella/oocss/blob/master/core/spacing/space.css
+*/
+.man {
+    margin: 0;
+}
+
+/* viewport fixing */
+
+@-webkit-viewport {
+	width: device-width;
+	zoom: 1.0;
+}
+@-moz-viewport {
+	width: device-width;
+	zoom: 1.0;
+}
+@-ms-viewport {
+	width: device-width;
+	zoom: 1.0;
+}
+@-o-viewport {
+	width: device-width;
+	zoom: 1.0;
+}
+@viewport {
+	width: device-width;
+	zoom: 1.0;
+}
+
+/* Conditional loading */
+
+@media (min-width: 641px) {
+    /* here go rules for big resources and big screens like: background-images, font-faces, etc. */
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+    /* Style adjustments for retina devices */
+}
+
+/* orientation iOS font-size fix */
+@media (orientation: landscape) and (max-device-width: 768px) {
+    html,
+    body {
+        -webkit-text-size-adjust: 100%;
+    }
+}
+
+
+
+
+
