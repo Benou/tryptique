@@ -146,3 +146,13 @@ button, input {
     background-size: 80% auto;
     background-position: center;
 }
+
+
+
+/*BEN CSS pour les markers de la map*/
+.marker {
+    background-color: tomato;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+}
