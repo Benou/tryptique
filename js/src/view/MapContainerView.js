@@ -11,6 +11,7 @@
             "click i.icon_close_shop": "closeShop"
         },
 
+        _$fsBtn: null,
         _$shop: null,
         _map: null,
 
@@ -31,6 +32,7 @@
             this._map.addLayer( markers );
 
             // Je récupère la balise shop
+            this._$fsBtn = $( "i.icon_fullscreen" );
             this._$shop = $( "#shop" );
 
             _.each( this.collection.models, function( entityModel ) {
@@ -74,16 +76,17 @@
         onMarkerClick: function( e ) {
             var entityModel = this.collection.get( e.currentTarget.id );
             if ( entityModel ) {
-                if ( this._$shop.hasClass( "close" ) ) {
-                    this._$shop.removeClass( "close" );
+                if ( !$("div.visuel_map" ).hasClass( 'visu1' ) ) {
+                    this._$fsBtn.addClass( "close" );
                 }
+
+                this._$shop.removeClass( "close" );
             }
         },
 
         closeShop: function() {
-            if ( !this._$shop.hasClass( "close" ) ) {
-                this._$shop.addClass( "close" );
-            }
+            this._$fsBtn.removeClass( "close" );
+            this._$shop.addClass( "close" );
         }
     } );
 
@@ -95,6 +98,7 @@
         $("div.visuel_video").css('display', 'none');
         $("div.visuel_form").addClass('visu2');
         $("div.visuel_map").addClass('visu1');
+        $( "i.icon_fullscreen" ).addClass( "top" );
     };
 
     function layoutMiniMap() {
@@ -102,6 +106,11 @@
         $("div.visuel_video").css('display', 'block');
         $("div.visuel_form").removeClass('visu2');
         $("div.visuel_map").removeClass('visu1');
+        $( "i.icon_fullscreen" ).removeClass( "top" );
+
+        if ( !$( "#shop" ).hasClass( "close" ) ) {
+            $( "i.icon_fullscreen" ).addClass( "close" );
+        }
     };
 
 } )();
