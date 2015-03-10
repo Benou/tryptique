@@ -8,6 +8,9 @@
         _entityList: null,
         _localizationModel: null,
 
+        _ctaView: null,
+        _videoView: null,
+        _localizationView: null,
         _mapView: null,
 
         initialize: function() {
@@ -19,22 +22,31 @@
         },
 
         onConfigChange: function() {
+            this._ctaView = new kps.CallToActionView( {
+                model: this._configModel
+            } ).render();
+             this._videoView = new kps.VideoContainerView( {
+             model: this._configModel
+             } ).render();
             this._entityList = new kps.EntityCollection();
             this._entityList.on( "reset", _.bind( this.onEntitiesChange, this ) );
             this._entityList.fetch( this._configModel.get( "entitiesURL" ) );
         },
 
         onEntitiesChange: function() {
-            this._mapView = new kps.MapView( {
+            this._localizationModel = new kps.LocalizationModel();
+            this._localizationView = new kps.LocalizationFormView( {
+                model: this._localizationModel
+            } ).render();
+            this._mapView = new kps.MapContainerView( {
                 collection: this._entityList
             } ).render();
-            this._localizationModel = new kps.LocalizationModel();
             this._localizationModel.on( "change", _.bind( this.onLocalizationChange, this ) );
             this._localizationModel.fetch();
         },
 
         onLocalizationChange: function() {
-            console.log( "  -> onLocalizationChange" );
+            this._entityList.calculateDelta( this._localizationModel.toJSON() );
         }
     } );
 
@@ -42,7 +54,13 @@
     window.kps.Tryptique = window.kps.Tryptique || Tryptique;
 
     $( document ).ready( function() {
-        kps.Utils.loadTemplates( [ ], kps, function() {
+        kps.Utils.loadTemplates( [
+            "CallToActionView",
+            "VideoContainerView",
+            "LocalizationFormView",
+            "MapContainerView",
+            "MarkerView"
+        ], kps, function() {
             kps.app = new kps.Tryptique();
             Backbone.history.start();
         } );

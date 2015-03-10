@@ -3,16 +3,17 @@
  */
 ( function() {
 
-    var EntityView = Backbone.View.extend( {
+    var MarkerView = Backbone.View.extend( {
         tagName: "a",
         className: "marker",
 
         render: function() {
+            this.$el.html( this.template() );
             return this;
         }
     } );
 
     window.kps = window.kps || { };
-    window.kps.EntityView = window.kps.EntityView || EntityView;
+    window.kps.MarkerView = window.kps.MarkerView || MarkerView;
 
 } )();

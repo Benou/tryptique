@@ -10,6 +10,10 @@
         _localizationDefaults: { },
         _mapDefaults: { },
 
+        initialize: function() {
+            ( this.model ) || ( this.model = kps.EntityModel );
+        },
+
         fetch: function( source, options ) {
             ( options ) || ( options = { } );
             _.extend( options, {
@@ -30,10 +34,21 @@
             this._mapDefaults.maxaffcity = response.maxaffcity;
 
             return data;
+        },
+
+        calculateDelta: function( localization ) {
+            _.each( this.models, function( m ) {
+                m.set( "delta", kps.Utils.calculateDelta( localization, m.toJSON() ) );
+            }, this );
+
+            this.comparator = "delta";
+            this.sort();
         }
     } );
 
     window.kps = window.kps || { };
     window.kps.EntityCollection = window.kps.EntityCollection || EntityCollection;
+
+
 
 } )();

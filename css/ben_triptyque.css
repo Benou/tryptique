@@ -1,0 +1,90 @@
+*{
+    box-sizing: border-box;
+}
+html{
+    height: 100%;
+}
+body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+img{
+    display: inline-block;
+    vertical-align: bottom;
+    width: 100%;
+}
+
+/* wwwwwwwwwwwwwwwwwwwwwwwww LAYOUT wwwwwwwwwwwwwwwwwwwwwwwww */
+.ev_container{
+    /*width: 640px;*/
+    /*width:50%;*/
+    min-height: 100%;
+    display: flex;
+
+    flex-direction: column;
+    align-content: stretch;
+
+
+    border: 1px red solid;
+    box-sizing: content-box;
+    margin: 0 auto;
+}
+.ev_container > div{
+    width: 100%;
+    flex: 0 1 auto;
+    align-self: auto;
+}
+div.visuel_client{
+    border: 1px gold solid;
+}
+div.visuel_video{
+    border: 1px orange solid;
+}
+div.visuel_form{
+    border: 1px tomato solid;
+}
+div.visuel_map{
+    border: 1px lightseagreen solid;
+    -webkit-flex: 1 1 auto;
+    flex: 1 1 auto;
+    position: relative;
+}
+.visuel_form.visu2{
+    order: 2;
+}
+.visuel_map.visu1{
+    order: 1;
+}
+#map {
+    /*background-color: bisque;*/
+    border: 1px deeppink solid;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow-y:auto;
+
+    /* source bug height webkit : http://jsfiddle.net/poztin/MFHj7/1/*/
+
+}
+.icon_fullpage{
+    width: 78px;
+    height: 60px;
+    background-color: orange;
+    background: url("../img/deco/icon_fullpage.jpg");
+    position: absolute;
+    bottom: 1%;
+    right: 2%;
+    z-index: 1;
+}
+
+
+/* source flex : http://the-echoplex.net/flexyboxes/ */
+
+/*CSS pour les markers de la map*/
+.marker {
+    background-color: tomato;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+}
