@@ -6,9 +6,12 @@
     var MapContainerView = Backbone.View.extend( {
         el: $( "#map_container").first(),
         events: {
-            "click .icon_fullscreen" : "toggleFullscreen"
+            "click i.icon_fullscreen" : "toggleFullscreen",
+            "click a.marker": "onMarkerClick",
+            "click i.icon_close_shop": "closeShop"
         },
 
+        _$shop: null,
         _map: null,
 
         initialize: function() {
@@ -26,6 +29,9 @@
             // without a size, it will expand to fit the parent:
             this._map = new MM.Map( $( "#map" ).attr( "id" ), provider );
             this._map.addLayer( markers );
+
+            // Je récupère la balise shop
+            this._$shop = $( "#shop" );
 
             _.each( this.collection.models, function( entityModel ) {
                 markers.addMarker( new kps.MarkerView( {
@@ -63,6 +69,21 @@
 
             this._map.setExtent( locationList );
             this._map.setZoom( this.collection._mapDefaults.zoom );
+        },
+
+        onMarkerClick: function( e ) {
+            var entityModel = this.collection.get( e.currentTarget.id );
+            if ( entityModel ) {
+                if ( this._$shop.hasClass( "close" ) ) {
+                    this._$shop.removeClass( "close" );
+                }
+            }
+        },
+
+        closeShop: function() {
+            if ( !this._$shop.hasClass( "close" ) ) {
+                this._$shop.addClass( "close" );
+            }
         }
     } );
 

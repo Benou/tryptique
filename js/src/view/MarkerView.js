@@ -8,7 +8,8 @@
         className: "marker",
 
         render: function() {
-            this.$el.html( this.template() );
+            this.$el.html( this.template() )
+            this.$el.attr( "id", this.model.cid );
             return this;
         }
     } );
