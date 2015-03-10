@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <title>SVG image to SVG element example</title>
+    <style>
+        h4 {
+            clear: both;
+        }
+        a {
+            display: block;
+        }
+        /*#user path {
+            fill: red;
+        }
+        #shop path {
+            fill: blue;
+        }*/
+
+        .user path {
+            fill: red;
+        }
+        .shop path {
+            fill: blue;
+        }
+        .shop:hover path {
+            fill: gold;
+        }
+
+       /* #facebook-logo:hover rect {
+            fill: green;
+        }*/
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            /*
+             * Replace all SVG images with inline SVG
+             */
+            jQuery('img.svg').each(function(){
+                var $img = jQuery(this);
+                // var imgID = $img.attr('id');
+                var imgClass = $img.attr('class');
+                var imgURL = $img.attr('src');
+
+                jQuery.get(imgURL, function(data) {
+                    // Get the SVG tag, ignore the rest
+                    var $svg = jQuery(data).find('svg');
+
+                    // Add replaced image's ID to the new SVG
+                    if(typeof imgID !== 'undefined') {
+                        $svg = $svg.attr('id', imgID);
+                    }
+                    // Add replaced image's classes to the new SVG
+                    if(typeof imgClass !== 'undefined') {
+                        $svg = $svg.attr('class', imgClass+' replaced-svg');
+                    }
+
+                    // Remove any invalid XML tags as per http://validator.w3.org
+                    $svg = $svg.removeAttr('xmlns:a');
+
+                    // Replace image with new SVG
+                    $img.replaceWith($svg);
+                });
+
+            });
+        });
+    </script>
+
+</head>
+<body>
+<h1>Replace and SVG image with an inline SVG element.</h1>
+<p>
+    This allows you to use CSS to change an SVG image. See the source code to see how it's done. More details here: <br>
+    <a href="http://stackoverflow.com/questions/11978995/how-to-change-color-of-svg-image-using-css-jquery-svg-image-replacement/">
+        http://stackoverflow.com/questions/11978995/how-to-change-color-of-svg-image-using-css-jquery-svg-image-replacement/
+    </a>
+</p>
+
+<!-- Note the ID and the classes will carry over to the new SVG element. -->
+<!--<img id="facebook-logo" class="svg social-link" src="logo-facebook.svg"/>-->
+<!--<img id="facebook-logo" class="svg social-link" src="../img/deco/markers/icon_location.svg"/>-->
+
+<!--<img id="user" class="svg social-link" src="../img/deco/markers/icon_location.svg"/>
+<img id="shop" class="svg social-link" src="../img/deco/markers/icon_location.svg"/>-->
+
+<img class="svg user" src="../../img/deco/markers/icon_location.svg"/>
+<img class="svg shop" src="../../img/deco/markers/icon_location.svg"/>
+
+<h4>
+    <a href="http://www.funkhaus.us">By Drew Baker @ Funkhaus</a>
+</h4>
+</body>
+</html>
