@@ -92,6 +92,13 @@ https://css-tricks.com/snippets/css/a-guide-to-flexbox/
     bottom: 1.8%;
     right: 1.5%;
 }
+.icon_fullscreen.top{
+    bottom: auto;
+    top: 1.8%;
+    border: 2px solid indigo;
+}
+
+
 .icon_x_mark{
     width:6.25%; /*40px de 640;*/
     padding-bottom: 6.25%;
