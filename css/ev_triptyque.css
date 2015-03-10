@@ -28,9 +28,10 @@ img{
     align-content: stretch;
 
 
-    border: 1px red solid;
+    /*border: 1px red solid;*/
     box-sizing: content-box;
     margin: 0 auto;
+    position: relative;
 }
 .ev_container > div{
     width: 100%;
@@ -39,10 +40,10 @@ img{
     position: relative;
 }
 div.visuel_client{
-    border: 1px gold solid;
+    /*border: 1px gold solid;*/
 }
 div.visuel_video{
-    border: 1px orange solid;
+    /*border: 1px orange solid;*/
     text-align: center;
     background: black;
 }
@@ -50,12 +51,12 @@ div.visuel_video iframe{
     vertical-align: middle;
 }
 div.visuel_form{
-    border: 1px tomato solid;
+    /*border: 1px tomato solid;*/
     padding: 8px;
     background: black;
 }
 div.visuel_map{
-    border: 1px lightseagreen solid;
+    /*border: 1px lightseagreen solid;*/
     -webkit-flex: 1 1 auto;
     flex: 1 1 auto;
     position: relative;
@@ -67,8 +68,7 @@ div.visuel_map{
     order: 1;
 }
 #map {
-    /*background-color: bisque;*/
-    border: 1px deeppink solid;
+    /*border: 1px deeppink solid;*/
     position: absolute;
     height: 100%;
     width: 100%;
@@ -82,7 +82,9 @@ https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 */
 
 /* wwwwwwwwwwwwwwwwwwwwwwwww ICONS wwwwwwwwwwwwwwwwwwwwwwwww */
-
+i{
+    font-style: normal;
+}
 .icon_fullscreen{
     width: 12.1875%; /* 78px; */
     padding-bottom: 9.375%; /* 60px; */
@@ -95,7 +97,7 @@ https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 .icon_fullscreen.top{
     bottom: auto;
     top: 1.8%;
-    border: 2px solid indigo;
+    /*border: 2px solid indigo;*/
 }
 
 
@@ -104,11 +106,39 @@ https://css-tricks.com/snippets/css/a-guide-to-flexbox/
     padding-bottom: 6.25%;
     background: url("../img/deco/icon_x_mark.svg");
     background-size: 100% 100%;
-    border: 1px crimson solid;
+    /*border: 1px crimson solid;*/
     position: absolute;
-    top: 6%;
-    left: 2.4%;
+    z-index: 1;
+    top: 1%;
+    left: 2%;
 }
+.icon_close_shop{
+    width:6.25%; /*40px de 640;*/
+    padding-bottom: 6.25%;
+    background: url("../img/deco/icon_x_mark_gray.svg");
+    background-size: 100% 100%;
+    /*border: 1px pink solid;*/
+    float: left;
+}
+.icon_map{
+    width:6.25%; /*40px de 640;*/
+    padding-bottom: 6.25%;
+    background: url("../img/deco/icon_map.svg");
+    background-size: 100% 100%;
+    /*border: 1px lime solid;*/
+    float: right;
+    margin-left: 2%;
+}
+.icon_phone{
+    width:6.25%; /*40px de 640;*/
+    padding-bottom: 6.25%;
+    background: url("../img/deco/icon_phone.svg");
+    background-size: 100% 100%;
+    /*border: 1px green solid;*/
+    float: right;
+    margin-left: 2%;
+}
+
 
 /* wwwwwwwwwwwwwwwwwwwwwwwww FORM wwwwwwwwwwwwwwwwwwwwwwwww */
 button, input {
@@ -156,19 +186,48 @@ button, input {
 
 /* wwwwwwwwwwwwwwwwwwwwwwwww ENCART SHOP wwwwwwwwwwwwwwwwwwwwwwwww */
 .ev_shop{
-    border: 2px orange solid;
+    /*border: 2px orange solid;*/
     position: absolute;
     bottom: 0;
     left: 0;
+    width: 100%;
     background: white;
+    overflow: hidden;
+    padding: 2%;
 }
+.ev_shop .title{
+    color: red;
+    font-size: 1em;
+    font-weight: normal;
+    margin: 0;
+    padding-left: 1em;
+    overflow: hidden;
+}
+.ev_shop .adress{
+    color: #555555;
+    font-size: .9em;
+    margin: 0;
+    padding-left: 1em;
+    overflow: hidden;
+}
+
+
+
+
 .close{
     display: none;
 }
 /*BEN CSS pour les markers de la map*/
 .marker {
-    background-color: tomato;
+    /*background-color: tomato;*/
     width: 16px;
     height: 16px;
-    border-radius: 8px;
+    /*border-radius: 8px;*/
+    /*border: 1px tomato solid;*/
+}
+.marker.mk_shop path{
+    fill: midnightblue;
+}
+.marker.mk_user path{
+    fill: red;
 }
