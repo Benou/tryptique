@@ -24,7 +24,7 @@
             var markers = new MM.MarkerLayer();
 
             // without a size, it will expand to fit the parent:
-            this._map = new MM.Map( this.el.id, provider );
+            this._map = new MM.Map( $( "#map" ).attr( "id" ), provider );
             this._map.addLayer( markers );
 
             _.each( this.collection.models, function( entityModel ) {
