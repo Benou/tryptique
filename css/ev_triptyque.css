@@ -147,8 +147,14 @@ button, input {
     background-position: center;
 }
 
-
-
+/* wwwwwwwwwwwwwwwwwwwwwwwww ENCART SHOP wwwwwwwwwwwwwwwwwwwwwwwww */
+.ev_shop{
+    border: 2px orange solid;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: white;
+}
 /*BEN CSS pour les markers de la map*/
 .marker {
     background-color: tomato;
