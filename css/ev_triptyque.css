@@ -155,6 +155,9 @@ button, input {
     left: 0;
     background: white;
 }
+.close{
+    display: none;
+}
 /*BEN CSS pour les markers de la map*/
 .marker {
     background-color: tomato;
