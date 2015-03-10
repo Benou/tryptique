@@ -6,7 +6,7 @@
     var MapContainerView = Backbone.View.extend( {
         el: $( "#map_container").first(),
         events: {
-            "click .icon_fullpage" : "toggleFullscreen"
+            "click .icon_fullscreen" : "toggleFullscreen"
         },
 
         _map: null,
