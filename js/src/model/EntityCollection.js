@@ -10,6 +10,10 @@
         _localizationDefaults: { },
         _mapDefaults: { },
 
+        initialize: function() {
+            ( this.model ) || ( this.model = kps.EntityModel );
+        },
+
         fetch: function( source, options ) {
             ( options ) || ( options = { } );
             _.extend( options, {

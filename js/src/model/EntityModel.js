@@ -10,7 +10,7 @@
             c: "country",
             z: "zipCode",
             lat: "latitude",
-            long: "longitude"
+            "long": "longitude"
         },
 
         defaults: function() {
@@ -37,8 +37,8 @@
 
             data.geometry = {
                 type: "Point",
-                coordinates: [ response.long, response.lat ]
-            }
+                coordinates: [ response[ "long" ], response.lat ]
+            };
 
             return data;
         }
