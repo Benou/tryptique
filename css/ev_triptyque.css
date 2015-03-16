@@ -21,22 +21,73 @@ img{
 .ev_container{
     /*width: 640px;*/
     /*width:50%;*/
-    min-height: 100%;
-    display: flex;
 
+    width: 100%; /*ajout pour ff*/
+    min-height: 100%;
+
+    /*  un-prefixed
+    display: flex;
     flex-direction: column;
     align-content: stretch;
+    align-items: flex-start;*/
 
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-pack: start;
+    -moz-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    -webkit-box-align: start;
+    -moz-box-align: start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
 
-    /*border: 1px red solid;*/
-    box-sizing: content-box;
+    border: 1px red solid;
+    /*box-sizing: content-box;*/
     margin: 0 auto;
     position: relative;
 }
 .ev_container > div{
     width: 100%;
+
+    /*  unprefixed
+    order: 0;
     flex: 0 1 auto;
-    align-self: auto;
+    align-self: stretch;*/
+
+    -webkit-box-ordinal-group: 1;
+    -moz-box-ordinal-group: 1;
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-box-flex: 0;
+    -moz-box-flex: 0;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -webkit-align-self: stretch;
+    -ms-flex-item-align: stretch;
+    align-self: stretch;
+
+
     position: relative;
 }
 div.visuel_client{
@@ -56,21 +107,47 @@ div.visuel_form{
     background: black;
 }
 div.visuel_map{
-    /*border: 1px lightseagreen solid;*/
+    border: 1px lightseagreen solid;
+    /* unprefixed
+    flex: 1 1 auto;*/
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
     -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
     flex: 1 1 auto;
+
     position: relative;
 }
 .visuel_form.visu2{
-    order: 2;
+    /* unprefixed
+        order: 1;
+    */
+
+    -webkit-box-ordinal-group: 2;
+    -moz-box-ordinal-group: 2;
+    -webkit-order: 1;
+    -ms-flex-order: 1;
+    order: 1;
+
 }
 .visuel_map.visu1{
-    order: 1;
+    /* unprefixed
+        order: 0;
+    */
+
+    -webkit-box-ordinal-group: 1;
+    -moz-box-ordinal-group: 1;
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+
 }
 #map {
-    /*border: 1px deeppink solid;*/
+    border: 1px gold solid;
     position: absolute;
     height: 100%;
+    /* for test ios6
+    height: 400px; */
     width: 100%;
     overflow-y:auto;
 
