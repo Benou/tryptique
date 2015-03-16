@@ -100,6 +100,7 @@ div.visuel_video{
 }
 div.visuel_video iframe{
     vertical-align: middle;
+    width: 100%;
 }
 div.visuel_form{
     /*border: 1px tomato solid;*/
@@ -273,7 +274,8 @@ button, input {
     padding: 2%;
 }
 .ev_shop .title{
-    color: red;
+    /*color: red;*/
+    color: green;
     font-size: 1em;
     font-weight: normal;
     margin: 0;
