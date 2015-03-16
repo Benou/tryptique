@@ -23,7 +23,9 @@ img{
     /*width:50%;*/
 
     width: 100%; /*ajout pour ff*/
-    min-height: 100%;
+    min-height: 100%; /*marche partout sauf IE */
+
+
 
     /*  un-prefixed
     display: flex;
@@ -60,7 +62,7 @@ img{
     -ms-flex-align: start;
     align-items: flex-start;
 
-    border: 1px red solid;
+    border: 1px pink solid;
     /*box-sizing: content-box;*/
     margin: 0 auto;
     position: relative;
@@ -81,12 +83,13 @@ img{
     -webkit-box-flex: 0;
     -moz-box-flex: 0;
     -webkit-flex: 0 1 auto;
-    -ms-flex: 0 1 auto;
-    flex: 0 1 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    /*flex: 0 0 0%;*/
+
     -webkit-align-self: stretch;
     -ms-flex-item-align: stretch;
     align-self: stretch;
-
 
     position: relative;
 }
@@ -101,6 +104,7 @@ div.visuel_video{
 div.visuel_video iframe{
     vertical-align: middle;
     width: 100%;
+    max-height: 200px; /*pour Iphone6*/
 }
 div.visuel_form{
     /*border: 1px tomato solid;*/
@@ -115,7 +119,8 @@ div.visuel_map{
     -moz-box-flex: 1;
     -webkit-flex: 1 1 auto;
     -ms-flex: 1 1 auto;
-    flex: 1 1 auto;
+     flex: 1 1 auto;
+    /*flex: 1 0 0%;*/
 
     position: relative;
 }
@@ -144,11 +149,9 @@ div.visuel_map{
 
 }
 #map {
-    border: 1px gold solid;
+    border: 1px greenyellow solid;
     position: absolute;
     height: 100%;
-    /* for test ios6
-    height: 400px; */
     width: 100%;
     overflow-y:auto;
 
@@ -310,3 +313,33 @@ button, input {
 .marker.mk_user path{
     fill: red;
 }
+
+/* SPECIFIQUE IE 10 + */
+/* https://philipnewcomer.net/2014/04/target-internet-explorer-10-11-css/
+https://github.com/philipwalton/flexbugs
+https://css-tricks.com/boxes-fill-height-dont-squish/
+*/
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .ev_container{
+        /*height: 100vh; ok marche aussi bien que height 100% sur IE11 mais pas sur IOS*/
+        height: 100%; /*pour IE10 et 11*/
+    }
+    #map{
+        /* position: static; */
+        border: 1px deeppink solid;
+    }
+}
+
+/* SPECIFIQUE Ipad 1 et 2 
+http://www.paulund.co.uk/ios-media-queries-boilerplate
+*/
+/*@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (-webkit-min-device-pixel-ratio: 1)
+{
+    .marker {
+        background-image: url("../img/deco/markers/icon_location.svg");
+    }
+}*/
