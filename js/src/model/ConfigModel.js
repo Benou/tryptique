@@ -4,7 +4,7 @@
 ( function() {
 
     var ConfigModel = Backbone.Model.extend( {
-        url: "php/config",
+        url: "php/index.php?action=config",
 
         defaults: function() {
             return {
@@ -17,7 +17,7 @@
             _.extend( options, {
                 parse: true,
                 dataType: "text",
-                url: this.url + "/" + tryptique_params.name + "/" + tryptique_params.id
+                url: this.url + "&name=" + tryptique_params.name + "&id=" + tryptique_params.id
             } );
             kps.ConfigModel.__super__.fetch.call( this, options );
         },

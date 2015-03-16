@@ -8,9 +8,14 @@
         className: "marker",
 
         render: function() {
-            this.$el.html( this.template() )
+            this.$el.html( this.template() );
             this.$el.attr( "id", this.model.cid );
+            this.$el.addClass( this.model.get( "type" ) == "user" ? "mk_user path" : "mk_shop" );
             return this;
+        },
+
+        reposition: function( localization ) {
+            this.model.set( this.model.parse( localization ) );
         }
     } );
 

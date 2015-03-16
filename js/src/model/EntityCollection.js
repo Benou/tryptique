@@ -4,11 +4,11 @@
 ( function() {
 
     var EntityCollection = Backbone.Collection.extend( {
-        url: "php/entities",
+        url: "php/index.php?action=entities",
         model: kps.EntityModel,
 
         _localizationDefaults: { },
-        _mapDefaults: { },
+        _mapData: { },
 
         initialize: function() {
             ( this.model ) || ( this.model = kps.EntityModel );
@@ -20,7 +20,7 @@
                 parse: true,
                 reset: true,
                 dataType: "json",
-                url: this.url + "?source=" + encodeURIComponent( source )
+                url: this.url + "&source=" + encodeURIComponent( source )
             } );
             kps.EntityCollection.__super__.fetch.call( this, options );
         },
@@ -30,8 +30,8 @@
             var data = response.events ? response.events.slice() : null;
 
             _.extend( this._localizationDefaults, response.localisation );
-            _.extend( this._mapDefaults, response.map );
-            this._mapDefaults.maxaffcity = response.maxaffcity;
+            _.extend( this._mapData, response.map );
+            this._mapData.maxaffcity = response.maxaffcity;
 
             return data;
         },

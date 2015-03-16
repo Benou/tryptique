@@ -4,7 +4,7 @@
 ( function() {
 
     var LocalizationModel = Backbone.Model.extend( {
-        url: "php/localization",
+        url: "php/index.php?action=localization",
 
         defaults: function() {
             return {
@@ -26,9 +26,9 @@
         fetch: function( options ) {
             ( options ) || ( options = { } );
             _.extend( options, {
-                url: this.url,
                 parse: true,
-                dataType: "text"
+                dataType: "text",
+                url: this.url
             } );
             kps.LocalizationModel.__super__.fetch.call( this, options );
         },
@@ -38,7 +38,7 @@
             _.extend( options, {
                 parse: true,
                 dataType: "text",
-                url: this.url + "/" + zipCode
+                url: this.url + "&zipCode=" + encodeURIComponent( zipCode )
             } );
             kps.LocalizationModel.__super__.fetch.call( this, options );
         },
@@ -53,9 +53,9 @@
                 regionCode: $xml.find( "regioncode" ).text(),
                 areaCode: parseInt( $xml.find( "areacode" ).text() ),
                 city: $xml.find( "city" ).text(),
-                zipCode: $xml.find( "postalcode" ).text(),
-                latitude: parseFloat( $xml.find( "latitude" ).text() ),
-                longitude: parseFloat( $xml.find( "longitude" ).text() ),
+                zipCode: $xml.find( "postalcode" ).text() || $xml.find( "postal_code" ).text(),
+                latitude: parseFloat( $xml.find( "latitude" ).text() ) || parseFloat( $xml.find( "lat" ).text() ),
+                longitude: parseFloat( $xml.find( "longitude" ).text() ) || parseFloat( $xml.find( "lng" ).text() ),
                 metroCode: parseInt( $xml.find( "metro_code" ).text() ),
                 dmaCode: parseInt( $xml.find( "dma_code" ).text() )
             };

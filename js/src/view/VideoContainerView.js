@@ -6,9 +6,21 @@
     var VideoContainerView = Backbone.View.extend( {
         el: $( "#video_container").first(),
 
+        initialize: function() {
+            this.listenTo( this.model, "change", this.render );
+        },
+
         render: function() {
             this.$el.html( this.template( this.model.toJSON() ) );
             return this;
+        },
+
+        show: function() {
+            this.$el.css( "display", "block" );
+        },
+
+        hide: function() {
+            this.$el.css( "display", "none" );
         }
     } );
 

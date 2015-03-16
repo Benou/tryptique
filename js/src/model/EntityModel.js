@@ -10,13 +10,15 @@
             c: "country",
             z: "zipCode",
             lat: "latitude",
-            "long": "longitude"
+            "long": "longitude",
+            d: "description",
+            t: "phone"
         },
 
         defaults: function() {
             return {
                 name: "",
-                adress: "",
+                address: "",
                 country: "",
                 zipCode: "",
                 latitude: 0,
@@ -29,15 +31,21 @@
             ( response ) || ( response = { } );
             var data = { };
 
+            _.extend( data, response );
+
             for ( var key in this.KEY_MAPPIMG ) {
                 if ( response[ key ] ) {
+                    delete data[ key ];
                     data[ this.KEY_MAPPIMG[ key ] ] = response[ key ];
                 }
             }
 
             data.geometry = {
                 type: "Point",
-                coordinates: [ response[ "long" ], response.lat ]
+                coordinates: [
+                    response[ "long" ] || response.longitude,
+                    response.lat || response.latitude
+                ]
             };
 
             return data;

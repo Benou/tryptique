@@ -13,40 +13,79 @@
         _localizationView: null,
         _mapView: null,
 
+        _maximized: false,
+
         initialize: function() {
             if ( window.tryptique_params ) {
                 this._configModel = new kps.ConfigModel();
-                this._configModel.on( "change", _.bind( this.onConfigChange, this ) );
+
+                this._ctaView = new kps.CallToActionView( {
+                    model: this._configModel
+                } );
+                this._videoView = new kps.VideoContainerView( {
+                    model: this._configModel
+                } );
+
+                this.listenTo( this._configModel, "change", this.onConfigChange );
                 this._configModel.fetch( tryptique_params );
             }
         },
 
+        toggleLayout: function() {
+            if ( this._maximized ) {
+                this.minimize();
+            }
+            else {
+                this.maximize();
+            }
+        },
+
+        maximize: function() {
+            this._maximized = true;
+            this._ctaView.hide();
+            this._videoView.hide();
+            this._localizationView.maximize();
+            this._mapView.maximize();
+        },
+
+        minimize: function() {
+            this._maximized = false;
+            this._ctaView.show();
+            this._videoView.show();
+            this._localizationView.minimize();
+            this._mapView.minimize();
+        },
+
         onConfigChange: function() {
-            this._ctaView = new kps.CallToActionView( {
-                model: this._configModel
-            } ).render();
-             this._videoView = new kps.VideoContainerView( {
-             model: this._configModel
-             } ).render();
-            this._entityList = new kps.EntityCollection();
-            this._entityList.on( "reset", _.bind( this.onEntitiesChange, this ) );
+            if ( !this._entityList ) {
+                this._entityList = new kps.EntityCollection();
+
+                this._mapView = new kps.MapContainerView( {
+                    collection: this._entityList
+                } );
+
+                this.listenTo( this._entityList, "reset", this.onEntitiesChange );
+            }
+
             this._entityList.fetch( this._configModel.get( "entitiesURL" ) );
         },
 
         onEntitiesChange: function() {
-            this._localizationModel = new kps.LocalizationModel();
-            this._localizationView = new kps.LocalizationFormView( {
-                model: this._localizationModel
-            } ).render();
-            this._mapView = new kps.MapContainerView( {
-                collection: this._entityList
-            } ).render();
-            this._localizationModel.on( "change", _.bind( this.onLocalizationChange, this ) );
+            if ( !this._localizationModel ) {
+                this._localizationModel = new kps.LocalizationModel();
+
+                this._localizationView = new kps.LocalizationFormView( {
+                    model: this._localizationModel
+                } );
+
+                this.listenTo( this._localizationModel, "change", this.onLocalizationChange );
+            }
+
             this._localizationModel.fetch();
         },
 
         onLocalizationChange: function() {
-            this._entityList.calculateDelta( this._localizationModel.toJSON() );
+            this._mapView.repositionUserMarker( this._localizationModel.toJSON() );
         }
     } );
 
@@ -59,7 +98,8 @@
             "VideoContainerView",
             "LocalizationFormView",
             "MapContainerView",
-            "MarkerView"
+            "MarkerView",
+            "ShopDetailsView"
         ], kps, function() {
             kps.app = new kps.Tryptique();
             Backbone.history.start();
