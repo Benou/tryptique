@@ -44,23 +44,28 @@
         },
 
         parse: function( response, options ) {
-            var $xml = $( $.parseXML( response ) );
-            var data = {
-                timeZone: $xml.find( "time_zone" ).text(),
-                country: $xml.find( "country" ).text(),
-                countryCode: $xml.find( "countrycode" ).text(),
-                region: $xml.find( "region" ).text(),
-                regionCode: $xml.find( "regioncode" ).text(),
-                areaCode: parseInt( $xml.find( "areacode" ).text() ),
-                city: $xml.find( "city" ).text(),
-                zipCode: $xml.find( "postalcode" ).text() || $xml.find( "postal_code" ).text(),
-                latitude: parseFloat( $xml.find( "latitude" ).text() ) || parseFloat( $xml.find( "lat" ).text() ),
-                longitude: parseFloat( $xml.find( "longitude" ).text() ) || parseFloat( $xml.find( "lng" ).text() ),
-                metroCode: parseInt( $xml.find( "metro_code" ).text() ),
-                dmaCode: parseInt( $xml.find( "dma_code" ).text() )
-            };
+            if ( !( /error/.test( response ) ) ) {
+                var $xml = $( $.parseXML( response ) );
+                var data = {
+                    timeZone: $xml.find( "time_zone" ).text(),
+                    country: $xml.find( "country" ).text(),
+                    countryCode: $xml.find( "countrycode" ).text(),
+                    region: $xml.find( "region" ).text(),
+                    regionCode: $xml.find( "regioncode" ).text(),
+                    areaCode: parseInt( $xml.find( "areacode" ).text() ),
+                    city: $xml.find( "city" ).text(),
+                    zipCode: $xml.find( "postalcode" ).text() || $xml.find( "postal_code" ).text(),
+                    latitude: parseFloat( $xml.find( "latitude" ).text() ) || parseFloat( $xml.find( "lat" ).text() ),
+                    longitude: parseFloat( $xml.find( "longitude" ).text() ) || parseFloat( $xml.find( "lng" ).text() ),
+                    metroCode: parseInt( $xml.find( "metro_code" ).text() ),
+                    dmaCode: parseInt( $xml.find( "dma_code" ).text() )
+                };
 
-            return data;
+                return data;
+            }
+            else {
+                this.trigger( "error" );
+            }
         }
     } );
 

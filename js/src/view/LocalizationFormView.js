@@ -19,6 +19,7 @@
         render: function() {
             this.$el.html( this.template() );
             this._$textInput = $( ".form_control", this.el );
+            this.listenTo( this.model, "change", this.onLocalizationChange );
             return this;
         },
 
@@ -43,6 +44,10 @@
 
         minimize: function() {
             this.$el.removeClass( "visu2" );
+        },
+
+        onLocalizationChange: function() {
+            this._$textInput.val( this.model.get( "city" ) );
         }
     } );
 

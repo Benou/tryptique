@@ -7,7 +7,7 @@
         url: "php/index.php?action=entities",
         model: kps.EntityModel,
 
-        _localizationDefaults: { },
+        _defaultLocalizationData: { },
         _mapData: { },
 
         initialize: function() {
@@ -29,7 +29,7 @@
             ( response ) || ( response = { } );
             var data = response.events ? response.events.slice() : null;
 
-            _.extend( this._localizationDefaults, response.localisation );
+            _.extend( this._defaultLocalizationData, response.localisation );
             _.extend( this._mapData, response.map );
             this._mapData.maxaffcity = response.maxaffcity;
 

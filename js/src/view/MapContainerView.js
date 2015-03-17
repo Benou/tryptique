@@ -137,6 +137,8 @@
                 ) );
             }, this );
 
+            locationList.push( this._userMarkerView.el.location );
+
             this._map.setZoom( this.model.get( "zoom" ) );
             this._map.setExtent( locationList );
         }

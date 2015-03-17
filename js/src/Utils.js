@@ -30,7 +30,9 @@
         },
 
         sendMessage: function( data ) {
-            console.log( data );
+            data = data || { };
+            data.target = kps.vars.adId;
+            window.top.postMessage( JSON.stringify( data ), kps.vars.topOrigin || "*" );
         }
     };
 

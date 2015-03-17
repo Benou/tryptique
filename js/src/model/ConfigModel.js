@@ -8,7 +8,11 @@
 
         defaults: function() {
             return {
-                entitiesURL: null
+                ctaImageURL: null,
+                ctaLinkURL: null,
+                videoURL: null,
+                entitiesURL: null,
+                defaultLocalizationData: null
             };
         },
 

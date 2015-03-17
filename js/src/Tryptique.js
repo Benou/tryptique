@@ -12,11 +12,12 @@
         _videoView: null,
         _localizationView: null,
         _mapView: null,
-
+        _alertView: null,
         _maximized: false,
+        _ready: false,
 
         initialize: function() {
-            $( ".icon_x_mark").on( "click", _.bind( this.onCloseButtonClick, this ) );
+            $( "#collapse_button").on( "click", _.bind( this.onCollapseButtonClick, this ) );
 
             if ( window.tryptique_params ) {
                 this._configModel = new kps.ConfigModel();
@@ -76,7 +77,11 @@
             } );
         },
 
-        onCloseButtonClick: function() {
+        setDefaultLocalization: function() {
+            this._localizationModel.set( this._configModel.get( "defaultLocalizationData" ) );
+        },
+
+        onCollapseButtonClick: function() {
             kps.Utils.sendMessage( {
                 type: "COLLAPSE"
             } );
@@ -105,27 +110,52 @@
                 } );
 
                 this.listenTo( this._localizationModel, "change", this.onLocalizationChange );
+                this.listenTo( this._localizationModel, "error", this.onLocalizationError );
             }
+
+            this._configModel.set( {
+                defaultLocalizationData: this._entityList._defaultLocalizationData
+            }, { silent: true } );
 
             this._localizationModel.fetch();
         },
 
         onLocalizationChange: function() {
             this._mapView.repositionUserMarker( this._localizationModel.toJSON() );
+            this._ready = true;
+        },
+
+        onLocalizationError: function() {
+            if ( !this._alertView ) {
+                this._alertView = new kps.AlertView().render();
+            }
+
+            if ( this._ready ) {
+                this._alertView.open( _.bind( this.setDefaultLocalization, this ) );
+            }
+            else {
+                this.setDefaultLocalization();
+            }
         }
     } );
 
     window.kps = window.kps || { };
+    window.kps.vars = window.kps.vars || { };
     window.kps.Tryptique = window.kps.Tryptique || Tryptique;
 
     $( document ).ready( function() {
+        window.location.search.replace( /([^=&?]+)=([^&]*)/g, function( search, key, value ) {
+            kps.vars[ key ] = decodeURIComponent( value );
+        } );
+
         kps.Utils.loadTemplates( [
             "CallToActionView",
             "VideoContainerView",
             "LocalizationFormView",
             "MapContainerView",
             "MarkerView",
-            "ShopDetailsView"
+            "ShopDetailsView",
+            "AlertView"
         ], kps, function() {
             kps.app = new kps.Tryptique();
             Backbone.history.start();
