@@ -301,8 +301,8 @@ button, input {
 /* BEN CSS pour les markers de la map */
 .marker {
     /*background-color: tomato;*/
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
 
     /*border-radius: 8px;*/
     /*border: 1px tomato solid;*/
