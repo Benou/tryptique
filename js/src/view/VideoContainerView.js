@@ -63,6 +63,9 @@
                 height: "100%",
                 width: "100%",
                 videoId: this.model.get( "videoURL" ),
+                playerVars: {
+                    autoplay: 1
+                },
                 events: {
                     "onReady": _.bind( this.onPlayerReady, this ),
                     "onStateChange": _.bind( this.onPlayerStateChange, this )
