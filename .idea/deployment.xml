@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="sulfur.kpsule.me">
+    <serverData>
+      <paths name="sulfur.kpsule.me">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/www/static/test/ads/tryptique" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/tests" />
+            <excludedPath local="true" path="$PROJECT_DIR$/yuicompressor-2.4.8.jar" />
+            <excludedPath local="true" path="$PROJECT_DIR$/yuiminify.sh" />
+            <excludedPath local="true" path="$PROJECT_DIR$/js/src/model" />
+            <excludedPath local="true" path="$PROJECT_DIR$/js/src/view" />
+            <excludedPath local="true" path="$PROJECT_DIR$/js/src/ev_echange.js" />
+            <excludedPath local="true" path="$PROJECT_DIR$/js/src/Tryptique.js" />
+            <excludedPath local="true" path="$PROJECT_DIR$/js/src/Utils.js" />
+            <excludedPath local="true" path="$PROJECT_DIR$/index_debug.html" />
+            <excludedPath local="true" path="$PROJECT_DIR$/index_eva_a.html" />
+            <excludedPath local="true" path="$PROJECT_DIR$/index_eva_b.html" />
+            <excludedPath local="true" path="$PROJECT_DIR$/index_eva_c.html" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
