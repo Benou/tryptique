@@ -11,27 +11,20 @@
         },
 
         _opened: false,
-        _callback: null,
 
         render: function() {
             this.$el.html( this.template() );
             return this;
         },
 
-        open: function( callback ) {
+        open: function() {
             this._opened = true;
-            this._callback = callback;
             this.$el.removeClass( "close" );
         },
 
         close: function() {
             this._opened = false;
             this.$el.addClass( "close" );
-
-            if ( this._callback ) {
-                this._callback();
-                this._callback = null;
-            }
         }
     } );
 

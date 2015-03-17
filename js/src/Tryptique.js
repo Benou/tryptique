@@ -131,7 +131,7 @@
             }
 
             if ( this._ready ) {
-                this._alertView.open( _.bind( this.setDefaultLocalization, this ) );
+                this._alertView.open();
             }
             else {
                 this.setDefaultLocalization();
