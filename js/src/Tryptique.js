@@ -16,6 +16,8 @@
         _maximized: false,
 
         initialize: function() {
+            $( ".icon_x_mark").on( "click", _.bind( this.onCloseButtonClick, this ) );
+
             if ( window.tryptique_params ) {
                 this._configModel = new kps.ConfigModel();
 
@@ -46,6 +48,15 @@
             this._videoView.hide();
             this._localizationView.maximize();
             this._mapView.maximize();
+
+            kps.Utils.sendMessage( {
+                type: "STAT",
+                info: {
+                    category: "CUSTOM",
+                    action: "MAXIMIZE"/*,
+                     path: _config.eid_stat*/
+                }
+            } );
         },
 
         minimize: function() {
@@ -54,6 +65,21 @@
             this._videoView.show();
             this._localizationView.minimize();
             this._mapView.minimize();
+
+            kps.Utils.sendMessage( {
+                type: "STAT",
+                info: {
+                    category: "CUSTOM",
+                    action: "MINIMIZE"/*,
+                     path: _config.eid_stat*/
+                }
+            } );
+        },
+
+        onCloseButtonClick: function() {
+            kps.Utils.sendMessage( {
+                type: "COLLAPSE"
+            } );
         },
 
         onConfigChange: function() {

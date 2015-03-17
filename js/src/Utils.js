@@ -27,6 +27,10 @@
             var d = c2.longitude * Math.PI / 180;
 
             return kps.Utils.EARTH_RADIUS * Math.acos( Math.sin( a ) * Math.sin( b ) + Math.cos( a ) * Math.cos( b ) * Math.cos( c - d ) ) ;
+        },
+
+        sendMessage: function( data ) {
+            console.log( data );
         }
     };
 

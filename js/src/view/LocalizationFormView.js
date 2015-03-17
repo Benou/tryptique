@@ -22,8 +22,19 @@
             return this;
         },
 
-        changeLocalization: function() {
+        changeLocalization: function( e ) {
+            e.preventDefault();
             this.model.fetchByZipCode( this._$textInput.val() );
+
+            kps.Utils.sendMessage( {
+                type: "STAT",
+                info: {
+                    category: "CUSTOM",
+                    action: "POSTALCODE",
+                    label: this._$textInput.val()/*,
+                    path: _config.eid_stat*/
+                }
+            } );
         },
 
         maximize: function() {

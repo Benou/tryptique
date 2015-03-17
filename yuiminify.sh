@@ -9,12 +9,11 @@ YUI_PATH="yuicompressor-2.4.8.jar"
 JS="js/src"
 FILELIST="minify.$$.tmp"
 MIN_FILE="$JS/tryptique-min.js"
-EXCLUDES="ev_*"
 
 rm -rf $MIN_FILE;
 
 # Minify JS to multiple files
-find $JS -type f \( -iname "*.js" ! -iname $EXCLUDES \) | grep -v min > $FILELIST
+find $JS -type f \( -iname "*.js" \) | grep -v min > $FILELIST
 while read LINE
 do
   OLD="$LINE"

@@ -38,7 +38,10 @@
 
         calculateDelta: function( localization ) {
             _.each( this.models, function( m ) {
-                m.set( "delta", kps.Utils.calculateDelta( localization, m.toJSON() ) );
+                m.set( {
+                    delta: kps.Utils.calculateDelta( localization, m.toJSON() ),
+                    itineraryURL: "https://www.google.fr/maps/preview/dir/" + localization.latitude + "," + localization.longitude + "/" + m.get( "latitude" ) + "," + m.get( "longitude" )
+                } );
             }, this );
 
             this.comparator = "delta";

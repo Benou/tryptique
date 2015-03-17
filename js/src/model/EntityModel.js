@@ -23,7 +23,10 @@
                 zipCode: "",
                 latitude: 0,
                 longitude: 0,
-                geometry: null
+                description: "",
+                phone: "",
+                geometry: null,
+                itineraryURL: null
             };
         },
 

@@ -5,8 +5,8 @@
 
     var ShopDetailsView = Backbone.View.extend( {
         events: {
-            "click .icon_map": "",
-            "click .icon_phone": ""
+            "click .icon_map": "onMapClick",
+            "click .icon_phone": "onPhoneClick"
         },
 
         _opened: false,
@@ -33,6 +33,48 @@
 
         setDetails: function( data ) {
             this.model.set( data );
+        },
+
+        onMapClick: function() {
+            kps.Utils.sendMessage( {
+                type: "EXTERNAL_LINK",
+                info: {
+                    action: "CUSTOM",
+                    url: this.model.get( "itineraryURL" )
+                }
+            } );
+
+            kps.Utils.sendMessage( {
+                type: "STAT",
+                info: {
+                    category: "CUSTOM",
+                    action: "ITINERARY",
+                    label: this.model.get( "itineraryURL" )/*,
+                    path: _config.eid_stat*/
+                }
+            } );
+        },
+
+        onPhoneClick: function() {
+            kps.Utils.sendMessage( {
+                type: "STAT",
+                info: {
+                    category: "EXTERNAL_LINK",
+                    action: "CUSTOM",
+                    label: this.model.get( "phone" )/*,
+                     path: _config.eid_stat*/
+                }
+            } );
+
+            kps.Utils.sendMessage( {
+                type: "STAT",
+                info: {
+                    category: "CUSTOM",
+                    action: "PHONE",
+                    label: this.model.get( "phone" )/*,
+                     path: _config.eid_stat*/
+                }
+            } );
         }
     } );
 

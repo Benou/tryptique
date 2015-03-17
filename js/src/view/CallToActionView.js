@@ -6,6 +6,10 @@
     var CallToActionView = Backbone.View.extend( {
         el: $( "#cta").first(),
 
+        events: {
+            "click": "onCtaClick"
+        },
+
         initialize: function() {
             this.listenTo( this.model, "change", this.render );
         },
@@ -21,6 +25,16 @@
 
         hide: function() {
             this.$el.css( "display", "none" );
+        },
+
+        onCtaClick: function() {
+            kps.Utils.sendMessage( {
+                type: "EXTERNAL_LINK",
+                info: {
+                    action: "CUSTOM",
+                    url: this.model.get( "ctaLinkURL" )
+                }
+            } );
         }
     } );
 

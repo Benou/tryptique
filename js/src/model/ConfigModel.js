@@ -25,6 +25,9 @@
         parse: function( response, options ) {
             var $xml = $( $.parseXML( response ) );
             var data = {
+                ctaImageURL: $xml.find( "background"  ).text(),
+                ctaLinkURL: $xml.find( "url"  ).text(),
+                videoURL: $xml.find( "teaservideoyt" ).text(),
                 entitiesURL: $xml.find( "json_path" ).text()
             };
 
