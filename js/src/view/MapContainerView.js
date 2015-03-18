@@ -11,6 +11,7 @@
         _shopView: null,
         _$layoutButton: null,
         _userMarkerView: null,
+        _$currentMarker: null,
 
         initialize: function() {
             this.listenTo( this.collection, "reset", this.onCollectionChange );
@@ -19,14 +20,14 @@
             if ( kps.Utils.canTouchThis() ) {
                 this.delegateEvents( {
                     "touchstart .icon_fullscreen" : "toggleLayout",
-                    "touchstart .marker": "openShopDetails",
+                    "touchstart .marker": "onMarkerClick",
                     "touchstart .icon_close_shop": "closeShopDetails"
                 } );
             }
             else {
                 this.delegateEvents( {
                     "click .icon_fullscreen" : "toggleLayout",
-                    "click .marker": "openShopDetails",
+                    "click .marker": "onMarkerClick",
                     "click .icon_close_shop": "closeShopDetails"
                 } );
             }
@@ -106,18 +107,30 @@
             }
         },
 
-        openShopDetails: function( e ) {
-            var entityModel = this.collection.get( e.currentTarget.id );
-            if ( entityModel ) {
-                e.stopImmediatePropagation();
-                e.preventDefault();
+        openShopDetails: function( id ) {
+            var entityModel = this.collection.get( id );
 
+            if ( entityModel ) {
                 if ( !kps.app._maximized ) {
                     this._$layoutButton.addClass( "close" );
                 }
 
                 this._shopView.open();
                 this._shopView.setDetails( entityModel.toJSON() );
+                this.selectCurrentMarker( id );
+            }
+        },
+
+        selectCurrentMarker: function( id ) {
+            this.unselectCurrentMarker();
+            this._$currentMarker =  $( "#" + id + " path" );
+            this._$currentMarker.css( "fill", kps.app._configModel.get( "majorColor" ) );
+        },
+
+        unselectCurrentMarker: function() {
+            if ( this._$currentMarker ) {
+                this._$currentMarker.css( "fill", kps.app._configModel.get( "darkColor" ) );
+                this._$currentMarker = null;
             }
         },
 
@@ -125,6 +138,7 @@
             e.stopImmediatePropagation();
             e.preventDefault();
 
+            this.unselectCurrentMarker();
             this._$layoutButton.removeClass( "close" );
             this._shopView.close();
         },
@@ -162,6 +176,17 @@
 
             this._map.setZoom( this.model.get( "zoom" ) );
             this._map.setExtent( locationList );
+
+            if ( this.collection.length > 0 ) {
+                this.openShopDetails( this.collection.at( 0 ).cid );
+            }
+        },
+
+        onMarkerClick: function( e ) {
+            e.stopImmediatePropagation();
+            e.preventDefault();
+
+            this.openShopDetails( e.currentTarget.id );
         }
     } );
 

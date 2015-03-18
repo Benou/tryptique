@@ -26,6 +26,7 @@
 
         render: function() {
             this.$el.html( this.template( this.model.toJSON() ) );
+            $( "h1.title", this.el ).css( "color", kps.app._configModel.get( "majorColor" ) );
             return this;
         },
 

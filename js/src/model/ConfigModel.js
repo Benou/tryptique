@@ -32,7 +32,9 @@
                 ctaImageURL: $xml.find( "background"  ).text(),
                 ctaLinkURL: $xml.find( "url"  ).text(),
                 videoURL: $xml.find( "teaservideoyt" ).text(),
-                entitiesURL: $xml.find( "json_path" ).text()
+                entitiesURL: $xml.find( "json_path" ).text(),
+                majorColor: "#" + $xml.find( "skin" ).attr( "majorColor" ),
+                darkColor: "#" + $xml.find( "skin" ).attr( "darkColor" )
             };
 
             return data;

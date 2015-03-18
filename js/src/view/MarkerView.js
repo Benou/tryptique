@@ -10,7 +10,13 @@
         render: function() {
             this.$el.html( this.template() );
             this.$el.attr( "id", this.model.cid );
-            this.$el.addClass( this.model.get( "type" ) == "user" ? "mk_user path" : "mk_shop" );
+            if ( this.model.get( "type" ) == "user" ) {
+                this.$el.addClass( "mk_shop" );
+            }
+            else {
+                this.$el.find( "path" ).css( "fill", kps.app._configModel.get( "darkColor" ) );
+            }
+
             return this;
         },
 

@@ -6,12 +6,19 @@
     var CallToActionView = Backbone.View.extend( {
         el: $( "#cta").first(),
 
-        events: {
-            "click": "onCtaClick"
-        },
-
         initialize: function() {
             this.listenTo( this.model, "change", this.render );
+
+            if ( kps.Utils.canTouchThis() ) {
+                this.delegateEvents( {
+                    "touchstart": "onCtaClick"
+                } );
+            }
+            else {
+                this.delegateEvents( {
+                    "click": "onCtaClick"
+                } );
+            }
         },
 
         render: function() {
@@ -27,7 +34,10 @@
             this.$el.css( "display", "none" );
         },
 
-        onCtaClick: function() {
+        onCtaClick: function( e ) {
+            e.stopImmediatePropagation();
+            e.preventDefault();
+
             kps.Utils.sendMessage( {
                 type: "EXTERNAL_LINK",
                 info: {

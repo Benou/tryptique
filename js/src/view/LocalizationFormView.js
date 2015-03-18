@@ -6,14 +6,21 @@
     var LocalizationFormView = Backbone.View.extend( {
         el: $( "#localization_form").first(),
 
-        events: {
-            "click .btn.search": "changeLocalization"
-        },
-
         _$textInput: null,
 
         initialize: function() {
             this.listenToOnce( this.model, "change", this.render );
+
+            if ( kps.Utils.canTouchThis() ) {
+                this.delegateEvents( {
+                    "touchstart .btn.search": "changeLocalization"
+                } );
+            }
+            else {
+                this.delegateEvents( {
+                    "click .btn.search": "changeLocalization"
+                } );
+            }
         },
 
         render: function() {
@@ -24,7 +31,9 @@
         },
 
         changeLocalization: function( e ) {
+            e.stopImmediatePropagation();
             e.preventDefault();
+
             this.model.fetchByZipCode( this._$textInput.val() );
 
             kps.Utils.sendMessage( {
