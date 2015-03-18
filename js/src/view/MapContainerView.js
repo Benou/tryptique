@@ -6,12 +6,6 @@
     var MapContainerView = Backbone.View.extend( {
         el: $( "#map_container").first(),
 
-        events: {
-            "click .icon_fullscreen" : "toggleLayout",
-            "click .marker": "openShopDetails",
-            "click .icon_close_shop": "closeShopDetails"
-        },
-
         _map: null,
         _markerLayer: null,
         _shopView: null,
@@ -21,6 +15,21 @@
         initialize: function() {
             this.listenTo( this.collection, "reset", this.onCollectionChange );
             this.listenTo( this.collection, "sort", this.onCollectionSorted );
+
+            if ( kps.Utils.canTouchThis() ) {
+                this.delegateEvents( {
+                    "touchstart .icon_fullscreen" : "toggleLayout",
+                    "touchstart .marker": "openShopDetails",
+                    "touchstart .icon_close_shop": "closeShopDetails"
+                } );
+            }
+            else {
+                this.delegateEvents( {
+                    "click .icon_fullscreen" : "toggleLayout",
+                    "click .marker": "openShopDetails",
+                    "click .icon_close_shop": "closeShopDetails"
+                } );
+            }
         },
 
         render: function() {
@@ -32,7 +41,10 @@
             this._markerLayer = new MM.MarkerLayer();
 
             // without a size, it will expand to fit the parent:
-            this._map = new MM.Map( $( "#map" ).attr( "id" ), provider );
+            this._map = new MM.Map( $( "#map" ).attr( "id" ), provider, null, [
+                    new MM.TouchHandler(),
+                    new MM.MouseHandler()
+            ] );
             this._map.addLayer( this._markerLayer );
 
             this._shopView = new kps.ShopDetailsView( {
@@ -72,7 +84,10 @@
             this.collection.calculateDelta( localization );
         },
 
-        toggleLayout: function() {
+        toggleLayout: function( e ) {
+            e.stopImmediatePropagation();
+            e.preventDefault();
+
             kps.app.toggleLayout();
             this._map._windowResize();
         },
@@ -94,6 +109,9 @@
         openShopDetails: function( e ) {
             var entityModel = this.collection.get( e.currentTarget.id );
             if ( entityModel ) {
+                e.stopImmediatePropagation();
+                e.preventDefault();
+
                 if ( !kps.app._maximized ) {
                     this._$layoutButton.addClass( "close" );
                 }
@@ -103,7 +121,10 @@
             }
         },
 
-        closeShopDetails: function() {
+        closeShopDetails: function( e ) {
+            e.stopImmediatePropagation();
+            e.preventDefault();
+
             this._$layoutButton.removeClass( "close" );
             this._shopView.close();
         },

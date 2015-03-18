@@ -6,11 +6,20 @@
     var AlertView = Backbone.View.extend( {
         el: $( "#alert" ).first(),
 
-        events: {
-            "click .icon_x_mark": "close"
-        },
-
         _opened: false,
+
+        initialize: function() {
+            if ( kps.Utils.canTouchThis() ) {
+                this.delegateEvents( {
+                    "touchstart .icon_x_mark": "close"
+                } );
+            }
+            else {
+                this.delegateEvents( {
+                    "click .icon_x_mark": "close"
+                } );
+            }
+        },
 
         render: function() {
             this.$el.html( this.template() );
@@ -22,7 +31,10 @@
             this.$el.removeClass( "close" );
         },
 
-        close: function() {
+        close: function( e ) {
+            e.stopImmediatePropagation();
+            e.preventDefault();
+
             this._opened = false;
             this.$el.addClass( "close" );
         }

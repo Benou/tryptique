@@ -33,6 +33,10 @@
             data = data || { };
             data.target = kps.vars.adId;
             window.top.postMessage( JSON.stringify( data ), kps.vars.topOrigin || "*" );
+        },
+
+        canTouchThis: function() {
+            return ( "ontouchstart" in document );
         }
     };
 

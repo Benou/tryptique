@@ -76,6 +76,7 @@
         onPlayerReady: function( e ) {
             this._quarterIndex = 0;
             this._quarterDuration = this._player.getDuration() / 4;
+            /*this._player.playVideo();*/
         },
 
         onPlayerStateChange: function( e ) {

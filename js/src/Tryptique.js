@@ -17,7 +17,7 @@
         _ready: false,
 
         initialize: function() {
-            $( "#collapse_button").on( "click", _.bind( this.onCollapseButtonClick, this ) );
+            $( "#collapse_button").on( "click touchstart", _.bind( this.onCollapseButtonClick, this ) );
 
             if ( window.tryptique_params ) {
                 this._configModel = new kps.ConfigModel();

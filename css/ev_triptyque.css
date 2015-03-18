@@ -25,8 +25,6 @@ img{
     width: 100%; /*ajout pour ff*/
     min-height: 100%; /*marche partout sauf IE */
 
-
-
     /*  un-prefixed
     display: flex;
     flex-direction: column;
@@ -62,7 +60,7 @@ img{
     -ms-flex-align: start;
     align-items: flex-start;
 
-    border: 1px pink solid;
+    /*border: 1px pink solid;*/
     /*box-sizing: content-box;*/
     margin: 0 auto;
     position: relative;
@@ -112,7 +110,7 @@ div.visuel_form{
     background: black;
 }
 div.visuel_map{
-    border: 1px lightseagreen solid;
+    /*border: 1px lightseagreen solid;*/
     /* unprefixed
     flex: 1 1 auto;*/
     -webkit-box-flex: 1;
@@ -149,7 +147,7 @@ div.visuel_map{
 
 }
 #map {
-    border: 1px greenyellow solid;
+    /*border: 1px greenyellow solid;*/
     position: absolute;
     height: 100%;
     width: 100%;
@@ -371,7 +369,7 @@ https://css-tricks.com/boxes-fill-height-dont-squish/
     }
     #map{
         /* position: static; */
-        border: 1px deeppink solid;
+        /*border: 1px deeppink solid;*/
     }
 }
 

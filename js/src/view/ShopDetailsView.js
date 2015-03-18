@@ -4,16 +4,24 @@
 ( function() {
 
     var ShopDetailsView = Backbone.View.extend( {
-        events: {
-            "click .icon_map": "onMapClick",
-            "click .icon_phone": "onPhoneClick"
-        },
-
         _opened: false,
 
         initialize: function() {
             this.model = new kps.EntityModel();
             this.listenTo( this.model, "change", this.render );
+
+            if ( kps.Utils.canTouchThis() ) {
+                this.delegateEvents( {
+                    "touchstart .icon_map": "onMapClick",
+                    "touchstart .icon_phone": "onPhoneClick"
+                } );
+            }
+            else {
+                this.delegateEvents( {
+                    "click .icon_map": "onMapClick",
+                    "click .icon_phone": "onPhoneClick"
+                } );
+            }
         },
 
         render: function() {
@@ -35,7 +43,10 @@
             this.model.set( data );
         },
 
-        onMapClick: function() {
+        onMapClick: function( e ) {
+            e.stopImmediatePropagation();
+            e.preventDefault();
+
             kps.Utils.sendMessage( {
                 type: "EXTERNAL_LINK",
                 info: {
