@@ -203,24 +203,20 @@ i{
     margin-top: 1.8%;
 }
 .icon_map{
-    /*width:6.25%;*/ /*40px de 640;*/
     width:9.375%; /*62px de 640;*/
     padding-bottom: 9.21875%;  /*59px de 640;*/
     background: url("../img/deco/icon_map.svg");
     background-size: 100% 100%;
-    /*border: 1px lime solid;*/
     float: right;
-    margin-left: 2%;
+    margin-left: 3%;
 }
 .icon_phone{
     font-style: normal;
-   /* width:6.25%;*/ /*40px de 640;*/
     width: 4.84375%; /*31px de 640;*/
-    /*padding-bottom: 9.6875%; *//*62px de 640;*/
-    padding-bottom: 9.21875%;  /*59px de 640;*/
+    padding-bottom: 9.6875%; /*62px de 640;*/
+    /*padding-bottom: 9.21875%;*/  /*59px de 640;*/
     background: url("../img/deco/icon_phone.svg");
     background-size: 100% 100%;
-    /*border: 1px green solid;*/
     float: right;
     margin-left: 2%;
     margin-top: .5%;
@@ -264,7 +260,7 @@ button, input {
     display: inline-block;
     /*width: 9.2%;*/ /* 21px */
     width: 8.8%;
-    max-height: 80px;
+    /*max-height: 80px;*/
     border: none;
 
     /*padding-bottom: 7.5%;*/ /* 48px; */
