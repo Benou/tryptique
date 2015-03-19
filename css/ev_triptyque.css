@@ -24,6 +24,7 @@ img{
     /*width:50%;*/
 
     width: 100%; /*ajout pour ff*/
+
     min-height: 100%; /*marche partout sauf IE */
 
     /*  un-prefixed
@@ -164,6 +165,7 @@ https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 /* wwwwwwwwwwwwwwwwwwwwwwwww ICONS wwwwwwwwwwwwwwwwwwwwwwwww */
 i{
     font-style: normal;
+    vertical-align: middle;
 }
 .icon_fullscreen{
     width: 12.1875%; /* 78px; */
@@ -198,10 +200,12 @@ i{
     background-size: 100% 100%;
     /*border: 1px pink solid;*/
     float: left;
+    margin-top: 1.8%;
 }
 .icon_map{
-    width:6.25%; /*40px de 640;*/
-    padding-bottom: 6.25%;
+    /*width:6.25%;*/ /*40px de 640;*/
+    width:9.375%; /*62px de 640;*/
+    padding-bottom: 9.21875%;  /*59px de 640;*/
     background: url("../img/deco/icon_map.svg");
     background-size: 100% 100%;
     /*border: 1px lime solid;*/
@@ -209,13 +213,17 @@ i{
     margin-left: 2%;
 }
 .icon_phone{
-    width:6.25%; /*40px de 640;*/
-    padding-bottom: 6.25%;
+    font-style: normal;
+   /* width:6.25%;*/ /*40px de 640;*/
+    width: 4.84375%; /*31px de 640;*/
+    /*padding-bottom: 9.6875%; *//*62px de 640;*/
+    padding-bottom: 9.21875%;  /*59px de 640;*/
     background: url("../img/deco/icon_phone.svg");
     background-size: 100% 100%;
     /*border: 1px green solid;*/
     float: right;
     margin-left: 2%;
+    margin-top: .5%;
 }
 
 
@@ -228,11 +236,16 @@ button, input {
 .form_control {
     display: inline-block;
     vertical-align: middle;
-    width: 88.5%;
-    /*height: 34px;*/
-    padding: 8px 12px;
+    width: 88%;
+
+    /*padding: 8px 12px;
     font-size: 1.7em;
-    line-height: 1.5;
+    line-height: 1.75;*/
+
+    padding: 6px 12px;
+    font-size: 1.3em;
+    line-height: 1.35;
+
     color: #555;
     background-color: #FFF;
     background-image: none;
@@ -249,9 +262,14 @@ button, input {
 
 .btn.search {
     display: inline-block;
-    width: 9.2%;
+    /*width: 9.2%;*/ /* 21px */
+    width: 8.8%;
+    max-height: 80px;
     border: none;
-    padding-bottom: 7.5%; /*48px;*/
+
+    /*padding-bottom: 7.5%;*/ /* 48px; */
+    padding-bottom:  5.9375%; /* 38px; */
+
     margin-bottom: 0;
     margin-left: 1.2%;
     /*line-height: 1.5;*/
@@ -259,7 +277,7 @@ button, input {
     cursor: pointer;
     -moz-user-select: none;
     background: url("../img/deco/icon_magnifier_white.svg") no-repeat;
-    background-size: 80% auto;
+    background-size: contain;
     background-position: center;
 }
 
@@ -277,7 +295,8 @@ button, input {
 .ev_shop .title{
     /*color: red;*/
     color: green;
-    font-size: 1em;
+    /*font-size: 1em;*/
+    font-size: .9em;
     font-weight: normal;
     margin: 0;
     padding-left: 1em;
@@ -285,7 +304,8 @@ button, input {
 }
 .ev_shop .adress{
     color: #555555;
-    font-size: .9em;
+    /*font-size: .9em;*/
+    font-size: .8em;
     margin: 0;
     padding-left: 1em;
     overflow: hidden;
@@ -373,6 +393,15 @@ https://css-tricks.com/boxes-fill-height-dont-squish/
         /*border: 1px deeppink solid;*/
     }
 }
+
+/* orientation iOS font-size fix */
+@media (orientation: landscape) and (max-device-width: 768px) {
+    html,
+    body {
+        -webkit-text-size-adjust: 100%;
+    }
+}
+
 
 /* SPECIFIQUE Ipad 1 et 2 
 http://www.paulund.co.uk/ios-media-queries-boilerplate
