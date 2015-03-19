@@ -10,8 +10,8 @@
 
         initialize: function() {
             this.listenToOnce( this.model, "change", this.render );
-
-            if ( kps.Utils.canTouchThis() ) {
+            this.$el.submit( _.bind( this.changeLocalization, this ) );
+            /*if ( kps.Utils.canTouchThis() ) {
                 this.delegateEvents( {
                     "touchstart .btn.search": "changeLocalization"
                 } );
@@ -20,7 +20,7 @@
                 this.delegateEvents( {
                     "click .btn.search": "changeLocalization"
                 } );
-            }
+            }*/
         },
 
         render: function() {
@@ -45,6 +45,7 @@
                     path: _config.eid_stat*/
                 }
             } );
+            return false;
         },
 
         maximize: function() {
