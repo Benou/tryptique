@@ -54,8 +54,7 @@
                 type: "STAT",
                 info: {
                     category: "CUSTOM",
-                    action: "MAXIMIZE"/*,
-                     path: _config.eid_stat*/
+                    action: "MAXIMIZE"
                 }
             } );
         },
@@ -71,8 +70,7 @@
                 type: "STAT",
                 info: {
                     category: "CUSTOM",
-                    action: "MINIMIZE"/*,
-                     path: _config.eid_stat*/
+                    action: "MINIMIZE"
                 }
             } );
         },

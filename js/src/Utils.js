@@ -31,6 +31,10 @@
 
         sendMessage: function( data ) {
             data = data || { };
+            if ( data.type == "STAT" && kps.app._configModel ) {
+                data.info = data.info || { };
+                data.info.path = data.info.fullPath = kps.app._configModel.get( "sectionId" );
+            }
             data.target = kps.vars.adId;
             window.top.postMessage( JSON.stringify( data ), kps.vars.topOrigin || "*" );
         },

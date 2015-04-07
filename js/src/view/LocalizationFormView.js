@@ -41,8 +41,7 @@
                 info: {
                     category: "CUSTOM",
                     action: "POSTALCODE",
-                    label: this._$textInput.val()/*,
-                    path: _config.eid_stat*/
+                    label: this._$textInput.val()
                 }
             } );
             return false;

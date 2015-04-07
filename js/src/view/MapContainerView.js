@@ -118,6 +118,14 @@
                 this._shopView.open();
                 this._shopView.setDetails( entityModel.toJSON() );
                 this.selectCurrentMarker( id );
+
+                kps.Utils.sendMessage( {
+                    type: "STAT",
+                    info: {
+                        category: "CUSTOM",
+                        action: "FICHE"
+                    }
+                } );
             }
         },
 

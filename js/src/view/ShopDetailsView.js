@@ -61,8 +61,7 @@
                 info: {
                     category: "CUSTOM",
                     action: "ITINERARY",
-                    label: this.model.get( "itineraryURL" )/*,
-                    path: _config.eid_stat*/
+                    label: this.model.get( "itineraryURL" )
                 }
             } );
         },
@@ -73,8 +72,7 @@
                 info: {
                     category: "EXTERNAL_LINK",
                     action: "CUSTOM",
-                    label: this.model.get( "phone" )/*,
-                     path: _config.eid_stat*/
+                    label: this.model.get( "phone" )
                 }
             } );
 
@@ -83,8 +81,7 @@
                 info: {
                     category: "CUSTOM",
                     action: "PHONE",
-                    label: this.model.get( "phone" )/*,
-                     path: _config.eid_stat*/
+                    label: this.model.get( "phone" )
                 }
             } );
         }
